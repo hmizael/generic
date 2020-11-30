@@ -43,6 +43,10 @@ function New-CsvSplitter {
 .NOTES
     Author: Henrique Mizael
     GitHub: https://github.com/hmizael
+    
+.LINK
+    https://github.com/hmizael/generic/tree/main/New-CsvSplitter
+
 #>
 
     [CmdletBinding()]
