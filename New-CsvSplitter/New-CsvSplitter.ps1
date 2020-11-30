@@ -2,28 +2,28 @@ function New-CsvSplitter {
     
 <#
 .SYNOPSIS
-    Quebra um arquivo Csv em varios arquivos menores.
+    Split a large CSV files in multiple CSV files.
 
 .DESCRIPTION
-    New-CsvSplliter e uma função que recebe como entrada o caminho de um arquivo Csv para que este seja dividido em varios arquivos menores. Esta funcao iniciara na seguda linha do arquivo entendendo que a primeira linha e composta de cabecalhos.
+    New-CsvSplliter is a function that receive a input path of CSV file and split this file in multiples smaller files. This function start in the second line of file understanding the first line like headers of data.
 
 .PARAMETER SourceFilePath
-    Indica o caminho completo do arquivo de origem.
+    This parameter indicate the full path of input CSV file.
 
 .PARAMETER DestinationPath
-    Indica a pasta de saida para os novos arquivos. A localizacao atual e usada por padrao.
+    This parameter indicate the output folder for the new CSV files. By default the atual path is used for output.
 
 .PARAMETER NumberOfOutFiles
-    Indica a quantidade de arquivos a serem gerados na saida. A funcao calculara quantas linhas do Csv deverao conter em cada arquivo de saida. Por padrao 2 arquivos serao gerados.
+    This parameter indicate the number of CSV files to be created in the output. This function automatically calculate the number of lines will be created in each CSV output file, by default two files will be generated.
 
 .PARAMETER InitialLine
-    Indica a primeira linha a ser usada no processamento. O valor padrao e 1, para assim ignorar a linha de cabecalho.
+    This parameter indicate ther first line to be used in the processing. The default value is 1, this will ignore the first line considering this line like a header.
 
 .PARAMETER Delimiter
-    Indica qual sera o delimitador usado para reconhecer o conteudo do Csv de origem. O mesmo delimitador sera utilizado para a geracao dos arquivos de saida.
+    This parameter indicate the delimiter used to recognize the data of source CSV. This delimiter will be used in generation of output files.
 
 .PARAMETER Preffix
-    Indica qual sera o prefixo para a criacao do nome dos arquivos de saida. Por padrao nao se usa um prefixo.
+    This parameter indicate which will be the preffix to create the name of output files. By default the preffix will not be used.
 
 .EXAMPLE
     New-CsvSplitter -SourceFilePath "C:\CsvSplit\SourceCsv.csv"
@@ -68,10 +68,10 @@ function New-CsvSplitter {
 
     $Content = Import-Csv $SourceFilePath -Delimiter $Delimiter
     $StartLine = $InitialLine
-    Write-Verbose "Lido arquivo de origem $SourceFilePath a partir da linha $InitialLine."
+    Write-Verbose "Read source file $SourceFilePath from the line $InitialLine."
     $EndLine = 0
     $Records = [int][Math]::Ceiling($Content.Count / $NumberOfOutFiles)
-    Write-Verbose "Serao cerca de $Records registros em cada um dos $NumberOfOutFiles arquivos de saida."
+    Write-Verbose "Will be about $Records records in each of the $NumberOfOutFiles output files."
     for ($i = 1; $i -le $NumberOfOutFiles; $i++) { 
         $Path = Join-Path -Path $DestinationPath -ChildPath "$Preffix$i.csv"
 
