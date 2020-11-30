@@ -1,5 +1,5 @@
 function New-CsvSplitter {
-    
+
 <#
 .SYNOPSIS
     Split a large CSV files in multiple CSV files.
@@ -32,7 +32,7 @@ function New-CsvSplitter {
     New-CsvSplitter -SourceFilePath "C:\CsvSplit\SourceCsv.csv" -DestinationPath "C:\CsvSplitted"
 
 .EXAMPLE
-    New-CsvSplitter -SourceFilePath "C:\CsvSplit\SourceCsv.csv" -DestinationPath "C:\CsvSplitted" -NumberOfOutFiles 8 -Delimiter "," -Preffix "CsvSplitted-"
+    New-CsvSplitter -SourceFilePath "C:\CsvSplit\SourceCsv.csv" -DestinationPath "C:\CsvSplitted" -NumberOfOutFiles 8 -Delimiter "," -Preffix "CsvSplitted-"    
 
 .INPUTS
     String, Char, Int
@@ -77,7 +77,7 @@ function New-CsvSplitter {
 
         $Endline += $Records
         $Content[$StartLine..$EndLine] | Export-Csv -Path $Path -NoTypeInformation -Delimiter $Delimiter
-        Write-Verbose "`tArquivo $Path gerado."
+        Write-Verbose "`tFile $Path created."
         $StartLine = $EndLine + 1
     }
 }
